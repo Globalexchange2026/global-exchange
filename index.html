@@ -1,1 +1,692 @@
-index.html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="description" content="Global Exchange - Guides, recommandations et comparatifs de produits utiles.">
+
+  <title>Global Exchange | Guides & recommandations</title>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #667085;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
+      --border: #e5e7eb;
+      --success: #16a34a;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+
+    .nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      background:
+        linear-gradient(135deg, #eff6ff, #ffffff 55%, #eef2ff);
+      padding: 90px 20px;
+    }
+
+    .hero-content {
+      max-width: 1150px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(40px, 7vw, 70px);
+      line-height: 1.05;
+      margin: 0 auto 20px;
+      max-width: 850px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 13px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 75px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 34px;
+      margin: 0 0 10px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.12);
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      background: #eff6ff;
+      border-radius: 12px;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    .link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .products {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .product {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .product-image {
+      height: 170px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #dbeafe, #eef2ff);
+      font-size: 60px;
+    }
+
+    .product-content {
+      padding: 22px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--success);
+      background: #dcfce7;
+      padding: 5px 9px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .guide-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .guide {
+      background: white;
+      border: 1px solid var(--border);
+      padding: 22px;
+      border-radius: 14px;
+    }
+
+    .guide h3 {
+      margin-top: 0;
+    }
+
+    .guide p {
+      color: var(--muted);
+    }
+
+    .about {
+      background: #111827;
+      color: white;
+      max-width: none;
+    }
+
+    .about-inner {
+      max-width: 900px;
+      margin: auto;
+      padding: 75px 20px;
+      text-align: center;
+    }
+
+    .about p {
+      color: #cbd5e1;
+      font-size: 17px;
+    }
+
+    .contact-box {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-box input,
+    .contact-box textarea {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 15px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font: inherit;
+    }
+
+    .contact-box textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    footer {
+      background: #0b1220;
+      color: #94a3b8;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 900px) {
+      .grid,
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .guide-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .nav {
+        flex-direction: column;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 65px 18px;
+      }
+
+      section {
+        padding: 55px 18px;
+      }
+
+      .grid,
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <div class="nav">
+      <a href="#accueil" class="logo">
+        Global <span>Exchange</span>
+      </a>
+
+      <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#categories">Catégories</a>
+        <a href="#produits">Produits</a>
+        <a href="#guides">Guides</a>
+        <a href="#apropos">À propos</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="accueil">
+
+    <div class="hero">
+      <div class="hero-content">
+
+        <span class="badge">GLOBAL EXCHANGE</span>
+
+        <h1>
+          Trouvez les produits
+          <span style="color:#2563eb;">vraiment utiles.</span>
+        </h1>
+
+        <p>
+          Des guides simples, des recommandations pratiques
+          et des comparatifs pour vous aider à faire de meilleurs choix.
+        </p>
+
+        <div class="buttons">
+          <a href="#produits" class="btn btn-primary">
+            Découvrir les produits
+          </a>
+
+          <a href="#guides" class="btn btn-secondary">
+            Voir les guides
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <section id="categories">
+
+      <div class="section-title">
+        <h2>Nos catégories</h2>
+        <p>Découvrez nos sélections de produits et conseils.</p>
+      </div>
+
+      <div class="grid">
+
+        <article class="card">
+          <div class="icon">💻</div>
+          <h3>Technologie</h3>
+          <p>
+            Ordinateurs, accessoires, appareils connectés
+            et outils numériques.
+          </p>
+          <a class="link" href="#produits">Explorer →</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">🏠</div>
+          <h3>Maison</h3>
+          <p>
+            Des produits pratiques pour améliorer votre
+            confort et votre quotidien.
+          </p>
+          <a class="link" href="#produits">Explorer →</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">🎒</div>
+          <h3>Voyage</h3>
+          <p>
+            Accessoires et équipements utiles pour voyager
+            plus facilement.
+          </p>
+          <a class="link" href="#produits">Explorer →</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">📱</div>
+          <h3>Accessoires</h3>
+          <p>
+            Les petits équipements qui peuvent faire une
+            grande différence.
+          </p>
+          <a class="link" href="#produits">Explorer →</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">💼</div>
+          <h3>Travail</h3>
+          <p>
+            Des solutions pour travailler efficacement
+            depuis n'importe où.
+          </p>
+          <a class="link" href="#produits">Explorer →</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">⭐</div>
+          <h3>Nos favoris</h3>
+          <p>
+            Une sélection de produits intéressants
+            choisis pour leur utilité.
+          </p>
+          <a class="link" href="#produits">Explorer →</a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PRODUITS -->
+    <section id="produits">
+
+      <div class="section-title">
+        <h2>Produits recommandés</h2>
+        <p>Une sélection de produits utiles à découvrir.</p>
+      </div>
+
+      <div class="grid products">
+
+        <article class="card product">
+          <div class="product-image">💻</div>
+          <div class="product-content">
+            <span class="tag">TECH</span>
+            <h3>Ordinateurs</h3>
+            <p>
+              Découvrez les critères importants avant
+              de choisir votre ordinateur.
+            </p>
+            <a class="link" href="#guides">Voir le guide →</a>
+          </div>
+        </article>
+
+        <article class="card product">
+          <div class="product-image">🎧</div>
+          <div class="product-content">
+            <span class="tag">AUDIO</span>
+            <h3>Écouteurs</h3>
+            <p>
+              Les points essentiels à comparer avant
+              votre achat.
+            </p>
+            <a class="link" href="#guides">Voir le guide →</a>
+          </div>
+        </article>
+
+        <article class="card product">
+          <div class="product-image">🔋</div>
+          <div class="product-content">
+            <span class="tag">PRATIQUE</span>
+            <h3>Batteries externes</h3>
+            <p>
+              Comment choisir une batterie adaptée
+              à vos besoins.
+            </p>
+            <a class="link" href="#guides">Voir le guide →</a>
+          </div>
+        </article>
+
+        <article class="card product">
+          <div class="product-image">🎒</div>
+          <div class="product-content">
+            <span class="tag">VOYAGE</span>
+            <h3>Sacs de voyage</h3>
+            <p>
+              Les caractéristiques à rechercher pour
+              voyager confortablement.
+            </p>
+            <a class="link" href="#guides">Voir le guide →</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- GUIDES -->
+    <section id="guides">
+
+      <div class="section-title">
+        <h2>Guides & conseils</h2>
+        <p>
+          Des informations simples pour vous aider
+          à prendre de bonnes décisions.
+        </p>
+      </div>
+
+      <div class="guide-list">
+
+        <article class="guide">
+          <h3>🔎 Comment choisir un produit ?</h3>
+          <p>
+            Comparez les caractéristiques, la qualité,
+            les avis et le rapport qualité-prix avant
+            de faire votre choix.
+          </p>
+        </article>
+
+        <article class="guide">
+          <h3>💰 Comment comparer les prix ?</h3>
+          <p>
+            Ne regardez pas uniquement le prix affiché.
+            Vérifiez également les fonctionnalités,
+            la garantie et les frais supplémentaires.
+          </p>
+        </article>
+
+        <article class="guide">
+          <h3>⭐ Comment lire les avis ?</h3>
+          <p>
+            Apprenez à distinguer les avis réellement
+            utiles des évaluations peu fiables.
+          </p>
+        </article>
+
+        <article class="guide">
+          <h3>✅ Notre méthode</h3>
+          <p>
+            Nous privilégions la simplicité, l'utilité
+            et les informations faciles à comprendre.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- A PROPOS -->
+    <div class="about" id="apropos">
+      <div class="about-inner">
+
+        <h2>À propos de Global Exchange</h2>
+
+        <p>
+          Global Exchange est un site dédié aux guides,
+          recommandations et comparatifs de produits utiles.
+          Notre objectif est de vous aider à trouver les
+          informations importantes avant de faire un choix.
+        </p>
+
+        <p>
+          Nous voulons rendre la recherche de produits
+          plus simple, plus claire et plus accessible.
+        </p>
+
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+      <div class="section-title">
+        <h2>Contactez-nous</h2>
+        <p>Une question ou une suggestion ? Écrivez-nous.</p>
+      </div>
+
+      <div class="contact-box">
+
+        <form onsubmit="envoyerMessage(event)">
+
+          <input
+            type="text"
+            id="nom"
+            placeholder="Votre nom"
+            required
+          >
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Votre adresse e-mail"
+            required
+          >
+
+          <textarea
+            id="message"
+            placeholder="Votre message"
+            required
+          ></textarea>
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+            style="border:0;cursor:pointer;"
+          >
+            Envoyer le message
+          </button>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © <span id="annee"></span>
+      <strong>Global Exchange</strong>.
+      Tous droits réservés.
+    </p>
+
+    <p>
+      Guides
